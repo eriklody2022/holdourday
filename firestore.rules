@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Booked and blocked dates per venue/vendor. Everyone can see them; only the vendor desk can change them.
+    match /calendar/{vendorId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Public list of tentative holds: dates only, no names or contact details.
+    match /pending/{uid} {
+      allow read: if true;
+      allow write: if signedIn() && (request.auth.uid == uid || isAdmin());
+    }
+
+    // Each couple's full holds with contact details. Only that couple and the vendor desk can see them.
+    match /requests/{uid} {
+      allow read, write: if signedIn() && (request.auth.uid == uid || isAdmin());
+    }
+
+    // Vendor-desk accounts. Added by hand in the Firebase console.
+    match /admins/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+  }
+}

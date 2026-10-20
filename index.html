@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hold Our Day</title>
+<meta name="description" content="One date. Every vendor. Hold your Northern Colorado wedding date, then find caterers, photographers, florists, DJs and bakers free that day.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%232C6A86%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Georgia%22%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F4F6F5; --surface:#FFFFFF; --surface-2:#EAEFED; --ink:#17302B; --ink-2:#4B605B; --line:#D3DDD9;
+  --accent:#2C6A86; --accent-ink:#FFFFFF; --accent-soft:#DCEBF1;
+  --open:#2F7D52; --open-soft:#DDEFE3; --req:#B7791A; --req-soft:#F8EAD0; --booked:#A63D52; --booked-soft:#F4DDE2;
+  --shadow:0 10px 30px rgba(23,48,43,.10);
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1A18; --surface:#16241F; --surface-2:#1D2E29; --ink:#E6EEEB; --ink-2:#A3B5B0; --line:#2C403A;
+    --accent:#6FB3D1; --accent-ink:#0B1A20; --accent-soft:#1B3440;
+    --open:#6CC593; --open-soft:#183327; --req:#E7B25A; --req-soft:#3A2D14; --booked:#E88598; --booked-soft:#3E1D25;
+    --shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1A18; --surface:#16241F; --surface-2:#1D2E29; --ink:#E6EEEB; --ink-2:#A3B5B0; --line:#2C403A;
+  --accent:#6FB3D1; --accent-ink:#0B1A20; --accent-soft:#1B3440;
+  --open:#6CC593; --open-soft:#183327; --req:#E7B25A; --req-soft:#3A2D14; --booked:#E88598; --booked-soft:#3E1D25;
+  --shadow:0 10px 30px rgba(0,0,0,.4);
+}
+html{color-scheme:light}
+body{margin:0}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:0 60px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding-block:28px 18px;border-bottom:1px solid var(--line)}
+.brand h1{font-size:clamp(30px,5vw,44px);line-height:1}
+.brand h1 em{font-style:normal;color:var(--accent)}
+.brand p{margin:8px 0 0;color:var(--ink-2);max-width:56ch}
+nav.tabs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:999px;flex-wrap:wrap}
+nav.tabs button{border:0;background:none;padding:8px 16px;border-radius:999px;font-weight:600;color:var(--ink-2)}
+nav.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+nav.tabs .badge{display:inline-block;min-width:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:var(--req);color:#fff;font-size:12px}
+
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-block:20px}
+.why div{padding:14px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+.why b{display:block;font-size:14px}
+.why span{color:var(--ink-2);font-size:13.5px}
+
+.finder{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:end;box-shadow:var(--shadow)}
+@media (min-width:1000px){.finder{position:sticky;top:env(safe-area-inset-top,0px);z-index:5}}
+.field{display:grid;gap:5px}
+.field label,.lbl{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.field input,.field select,.field textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg)}
+.dows{display:flex;gap:4px;flex-wrap:wrap}
+.dows button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 0;width:40px;font-size:13px;font-weight:600}
+.dows button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-block:18px 10px;color:var(--ink-2);font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+.legend .count{margin-left:auto;color:var(--ink);font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card .art{height:92px;position:relative;background:var(--surface-2);color:var(--accent)}
+.card .art svg{position:absolute;inset:0;width:100%;height:100%}
+.card .art .town{position:absolute;left:14px;bottom:10px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--surface);padding:3px 8px;border-radius:6px}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h3{font-size:20px;line-height:1.2}
+.meta{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);font-weight:600}
+.card p.blurb{margin:0;color:var(--ink-2);font-size:14px}
+.avail{border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:6px}
+.avail .sum{font-size:13.5px}
+.avail .sum b{color:var(--open)}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{border:1px solid transparent;border-radius:7px;padding:3px 7px;font-size:12.5px;font-weight:600;background:var(--open-soft);color:var(--open)}
+.chip.req{background:var(--req-soft);color:var(--req)}
+.chip.more{background:none;color:var(--ink-2);border-color:var(--line)}
+button.chip:hover{border-color:currentColor}
+.card .actions{margin-top:auto;display:flex;gap:8px;padding-top:4px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;font-weight:600}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.ghost{background:none}
+.btn.good{background:var(--open);border-color:var(--open);color:#fff}
+.btn.bad{color:var(--booked);border-color:var(--booked)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.empty{padding:40px 20px;text-align:center;color:var(--ink-2);background:var(--surface);border:1px dashed var(--line);border-radius:14px}
+
+.steps{display:flex;gap:6px;overflow-x:auto;padding-block:18px 4px;scrollbar-width:thin}
+.steps button{flex:none;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px 7px 7px;font-weight:600;color:var(--ink-2)}
+.steps button .n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-size:12px;color:var(--ink)}
+.steps button[aria-current="step"]{border-color:var(--accent);color:var(--ink);background:var(--accent-soft)}
+.steps button[aria-current="step"] .n{background:var(--accent);color:var(--accent-ink)}
+.steps button.s-hold .n,.steps button.s-meeting .n{background:var(--req);color:#fff}
+.steps button.s-booked .n{background:var(--open);color:#fff}
+.datebar{margin-top:12px;padding:12px 16px;border-radius:12px;background:var(--accent-soft);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.datebar b{font-family:var(--display);font-weight:400;font-size:18px}
+.catnote{margin:0 0 14px;padding:10px 14px;border-left:3px solid var(--req);background:var(--req-soft);border-radius:0 10px 10px 0;font-size:13.5px}
+.plan{display:grid;gap:8px}
+.pstep{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.pstep .n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--surface-2)}
+.pstep.s-booked .n{background:var(--open);color:#fff}
+.pstep.s-hold .n,.pstep.s-meeting .n{background:var(--req);color:#fff}
+.pstep h3{font-size:18px}
+.pstep .sub{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:560px){.pstep{grid-template-columns:36px 1fr}.pstep .btn{grid-column:2}}
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(10,20,18,.45);z-index:20;display:flex;justify-content:flex-end}
+.sheet{width:min(640px,100%);height:100%;background:var(--bg);overflow-y:auto;padding:22px 20px calc(40px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:18px}
+.sheet .hd{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.sheet h2{font-size:28px;line-height:1.15}
+.x{border:1px solid var(--line);background:var(--surface);border-radius:50%;width:36px;height:36px;flex:none;font-size:18px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.facts div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.facts b{display:block;font-size:17px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.cal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-hd h3{font-size:19px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal .dow{font-size:11px;text-align:center;color:var(--ink-2);font-weight:700;letter-spacing:.05em}
+.day{height:44px;max-width:100%;border:1px solid transparent;border-radius:8px;background:var(--open-soft);color:var(--open);font-weight:600;font-size:14px;position:relative;display:flex;align-items:center;justify-content:center;padding:0}
+.day.req{background:var(--req-soft);color:var(--req)}
+.day.booked{background:var(--booked-soft);color:var(--booked);text-decoration:line-through}
+.day.past{background:none;color:var(--line);cursor:default}
+.day.pad{background:none;cursor:default}
+.day.sel{outline:2px solid var(--accent);outline-offset:1px}
+.day .rank{position:absolute;top:2px;right:4px;font-size:10px;color:var(--accent)}
+.picked{display:grid;gap:6px;margin-top:12px}
+.picked .row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:9px;background:var(--surface-2);font-size:14px}
+.picked .row small{color:var(--ink-2)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .full{grid-column:1/-1}
+@media (max-width:520px){.form{grid-template-columns:1fr}}
+.note{font-size:12.5px;color:var(--ink-2)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;z-index:40;font-weight:600;max-width:calc(100% - 32px)}
+.switch{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600}
+
+/* requests lists */
+.list{display:grid;gap:12px}
+.req-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px}
+.req-card .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.req-card h3{font-size:19px}
+.status{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.status.hold{background:var(--req-soft);color:var(--req)}
+.status.meeting{background:var(--accent-soft);color:var(--accent)}
+.status.booked{background:var(--open-soft);color:var(--open)}
+.status.released{background:var(--booked-soft);color:var(--booked)}
+.dates{display:flex;gap:6px;flex-wrap:wrap}
+.dates .d{padding:5px 9px;border-radius:8px;background:var(--surface-2);font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.dates .d.taken{text-decoration:line-through;color:var(--booked)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:13.5px}
+.kv dt{color:var(--ink-2)}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.section-hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-block:24px 14px}
+.section-hd h2{font-size:28px}
+.section-hd p{margin:0;color:var(--ink-2)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-2);font-size:12.5px}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:slide .22s ease-out}@keyframes slide{from{transform:translateX(30px);opacity:.6}}}
+.acct{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.acct .who{font-weight:600;font-size:14px;color:var(--ink-2)}
+.setup{background:var(--req-soft);color:var(--ink);padding:10px 20px;font-size:14px;text-align:center}
+.setup code{font-size:13px}
+</style>
+</head>
+<body>
+<div class="setup" id="setupBanner" hidden>This copy isn't connected to Firebase yet, so holds can't be saved. Add your project settings to <code>firebase-config.js</code> (see README).</div>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Hold Our <em>Day</em></h1>
+      <div class="lbl" style="margin-top:8px">One date. Every vendor. · Northern Colorado</div>
+      <p>Pick your date once. Hold a venue, then see which caterers, photographers, florists, DJs and bakers are free that same day, and set up every meeting from one place.</p>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" id="tab-find" aria-selected="true" data-view="find">Find vendors</button>
+      <button role="tab" id="tab-mine" aria-selected="false" data-view="mine">My plan</button>
+      <button role="tab" id="tab-desk" aria-selected="false" data-view="desk" hidden>Vendor desk <span class="badge num" id="deskBadge" hidden>0</span></button>
+    </nav>
+    <div class="acct" id="acct"></div>
+  </header>
+
+  <section id="view-find">
+    <nav class="steps" id="steps" aria-label="Planning steps"></nav>
+    <div class="datebar" id="datebar" hidden></div>
+    <div class="why" id="why">
+      <div><b>See booked dates up front</b><span>Every venue and vendor has a calendar showing which days are taken or on hold.</span></div>
+      <div><b>Venue first, then the rest</b><span>Once your venue date is held, every other step searches that date automatically.</span></div>
+      <div><b>Hold a date, then meet</b><span>Place a free tentative hold and suggest times to meet. Your meetings with every vendor land in one schedule.</span></div>
+    </div>
+
+    <div class="finder">
+      <div class="field"><label for="fExact">Check one date</label><input type="date" id="fExact"></div>
+      <div class="field"><label for="fFrom">Earliest date</label><input type="date" id="fFrom"></div>
+      <div class="field"><label for="fTo">Latest date</label><input type="date" id="fTo"></div>
+      <div class="field"><span class="lbl">Days</span><div class="dows" id="fDows"></div></div>
+      <div class="field" id="wrapGuests"><label for="fGuests">Guests</label><input type="number" id="fGuests" min="0" step="10" placeholder="Any" inputmode="numeric"></div>
+      <div class="field"><label for="fTown">Town</label><select id="fTown"><option value="">All towns</option></select></div>
+      <div class="field" id="wrapStyle"><label for="fStyle">Setting</label><select id="fStyle"><option value="">Any setting</option></select></div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:var(--open)"></i>Open</span>
+      <span><i style="background:var(--req)"></i>Tentative hold</span>
+      <span><i style="background:var(--booked)"></i>Booked</span>
+      <span>Open means no booking or hold is on record here yet.</span>
+      <span class="count num" id="resultCount"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="view-mine" hidden>
+    <div class="section-hd"><h2>My plan</h2><p id="planSub">Work through each step in order. Your venue date carries forward.</p></div>
+    <div class="plan" id="planSteps"></div>
+    <div class="section-hd"><h2 style="font-size:22px">Upcoming meetings</h2></div>
+    <div class="list" id="meetList"></div>
+    <div class="section-hd"><h2 style="font-size:22px">All holds and bookings</h2></div>
+    <div class="list" id="mineList"></div>
+  </section>
+
+  <section id="view-desk" hidden>
+    <div class="section-hd"><h2>Vendor desk</h2><p>Every hold across venues and vendors. Set a meeting, then book the date or release it. Open any listing to block dates booked elsewhere. In a live version each vendor would see only their own.</p></div>
+    <div class="list" id="deskList"></div>
+  </section>
+
+  <footer>
+    Hold Our Day is an independent planning directory and is not affiliated with the venues or vendors listed. Details come from public wedding guides and vendor sites and may be out of date. Availability reflects bookings, holds and blocks recorded on this page. A tentative hold is not a contract; a date is booked only after the couple meets with the venue.
+    <div class="note num" id="acctId" style="margin-top:8px"></div>
+  </footer>
+</div>
+
+<div id="sheetRoot"></div>
+<div id="toastRoot"></div>
+
+<script type="module">
+const FB="https://www.gstatic.com/firebasejs/10.14.1/";
+let initializeApp,getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged,getFirestore,fsDoc,fsCol,setDoc,getDoc,fsSnap;
+import { firebaseConfig } from "./firebase-config.js";
+
+/* ---------- Venue data (from public Northern Colorado wedding guides) ---------- */
+const VENUES = [
+  {id:"ginger-baker",name:"Ginger & Baker",town:"Fort Collins",style:"Urban & Industrial",cap:90,site:"gingerandbaker.com",blurb:"Restored 1900s grain mill in Old Town with exposed brick and a glass-walled rooftop."},
+  {id:"rist-canyon-inn",name:"Rist Canyon Inn",town:"Fort Collins",style:"Barn & Ranch",cap:100,site:"ristcanyoninn.com",blurb:"White farmhouse up Rist Canyon with bridal and groom suites and limited on-site lodging."},
+  {id:"hillside-vineyard",name:"The Hillside Vineyard",town:"Fort Collins",style:"Vineyard & Garden",cap:150,site:"thehillsidevineyard.com",blurb:"Vineyard rows, gazebos and a small beach, with foothill views."},
+  {id:"the-covey",name:"The Covey",town:"Fort Collins",style:"Barn & Ranch",cap:150,site:"thecoveyevents.com",blurb:"An elegant barn with chandeliers, a fireplace and garden ceremony space facing the mountains."},
+  {id:"elizabeth-hotel",name:"The Elizabeth Hotel",town:"Fort Collins",style:"Urban & Industrial",cap:150,site:"theelizabethcolorado.com",blurb:"Boutique hotel in Old Town with a rooftop option and guest rooms upstairs."},
+  {id:"tapestry-house",name:"Tapestry House",town:"LaPorte",style:"Historic",cap:225,site:"tapestryhouse.com",blurb:"1880s Victorian residence with a gazebo, gardens and bridal and groom suites."},
+  {id:"sylvan-dale",name:"Sylvan Dale Guest Ranch",town:"Loveland",style:"Barn & Ranch",cap:120,site:"sylvandale.com",blurb:"Guest ranch on the Big Thompson River. Cabins for guests and an optional horse-drawn entrance."},
+  {id:"mccreery-house",name:"The McCreery House",town:"Loveland",style:"Historic",cap:130,site:"mccreeryhouse.com",blurb:"Victorian manor with a wraparound veranda, river views and gardens."},
+  {id:"sweetheart-winery",name:"Sweetheart Winery",town:"Loveland",style:"Vineyard & Garden",cap:200,site:"sweetheartwinery.com",blurb:"Red barn, barrel room, big cottonwoods and a field by the river."},
+  {id:"ellis-ranch",name:"Ellis Ranch",town:"Loveland",style:"Barn & Ranch",cap:450,site:"lovelandweddingsite.com",blurb:"Working-ranch setting with meadow and mountain views. The largest capacity in the region."},
+  {id:"benson-park",name:"Benson Sculpture Garden",town:"Loveland",style:"Vineyard & Garden",cap:50,site:"lovgov.org",blurb:"City park pavilion surrounded by bronze sculptures. Reserved through Loveland Parks."},
+  {id:"tpc-colorado",name:"TPC Colorado",town:"Berthoud",style:"Golf & Lakeside",cap:400,site:"tpc.com/colorado",blurb:"Championship golf club on Lonetree Reservoir with a modern hall and mountain views."},
+  {id:"brookside-gardens",name:"Brookside Gardens",town:"Berthoud",style:"Vineyard & Garden",cap:300,site:"wedgewoodweddings.com/venues/brookside-gardens",blurb:"Flower gardens with a circular pergola and a water feature. Run by Wedgewood Weddings."},
+  {id:"windsor-mill",name:"The Windsor Mill",town:"Windsor",style:"Urban & Industrial",cap:150,site:"thewindsormill.com",blurb:"Renovated 1899 flour mill with red brick throughout."},
+  {id:"pelican-lakes",name:"Pelican Lakes",town:"Windsor",style:"Golf & Lakeside",cap:200,site:"pelicanlakeswindsor.com",blurb:"Golf club with a sandy beach and an island ceremony site."},
+  {id:"windsong-estate",name:"Windsong Estate",town:"Windsor",style:"Urban & Industrial",cap:300,site:"windsongestate.com",blurb:"Modern industrial hall on a hilltop with panoramic mountain views."},
+  {id:"rockin-s-ranch",name:"Rockin' S Ranch",town:"Johnstown",style:"Barn & Ranch",cap:200,site:"rockinsranchevents.com",blurb:"A renovated 1950s dairy farm with open-air spaces."},
+  {id:"dreams-dragonflies",name:"Dreams and Dragonflies",town:"Johnstown",style:"Barn & Ranch",cap:100,site:"dreamsanddragonflieseventcenter.com",blurb:"Rustic barn with historic details, a large lawn and getting-ready suites."},
+  {id:"meadows-event-center",name:"Meadows Event Center",town:"Platteville",style:"Barn & Ranch",cap:220,site:"meadowseventcenter.com",blurb:"Two-story Grand Hall and garden gazebo in the countryside between Greeley and Brighton. Outside catering allowed, no food and beverage minimums."},
+  {id:"lone-tree-creek",name:"Lone Tree Creek",town:"Greeley",style:"Barn & Ranch",cap:150,site:"lonetreecreek.wixsite.com/eventcenter",blurb:"White barn among large shade trees."},
+  {id:"bci-boulders",name:"Black Canyon Inn – The Boulders",town:"Estes Park",style:"Mountain",cap:200,site:"blackcanyoninn.com",blurb:"Large chandeliers and a weather-protected ceremony space in the mountains."},
+  {id:"bci-homestead",name:"Black Canyon Inn – The Homestead",town:"Estes Park",style:"Mountain",cap:100,site:"blackcanyoninn.com",blurb:"Rustic space by a pond with mountain views and lodging on site."},
+  {id:"skyview-fall-river",name:"Skyview at Fall River Village",town:"Estes Park",style:"Mountain",cap:125,site:"fallrivervillage.com",blurb:"Riverfront property with hilltop photo spots and mountain views."},
+  {id:"wild-basin-lodge",name:"Wild Basin Lodge",town:"Estes Park",style:"Mountain",cap:200,site:"wildbasinlodge.com",blurb:"Secluded lodge with riverside and meadow ceremony sites."},
+  {id:"della-terra",name:"Della Terra Mountain Chateau",town:"Estes Park",style:"Mountain",cap:200,site:"dellaterramountainchateau.com",blurb:"Italian-inspired chateau with a glass-walled ceremony room and suites."},
+  {id:"bristlecone-inn",name:"Bristlecone Inn",town:"Estes Park",style:"Mountain",cap:60,site:"bristleconeinn.com",blurb:"Small, simple mountain venue with outdoor string lights."},
+  {id:"lake-estes",name:"Lake Estes Pavilion",town:"Estes Park",style:"Golf & Lakeside",cap:120,site:"evrpd.colorado.gov",blurb:"Public pavilion on the Lake Estes shoreline, booked through the rec district."},
+  {id:"lionscrest",name:"Lionscrest Manor",town:"Lyons",style:"Mountain",cap:250,site:"lionscrestmanor.com",blurb:"Stone manor on 50 acres with 360-degree views. Family owned."},
+  {id:"stone-mountain",name:"Stone Mountain Lodge",town:"Lyons",style:"Mountain",cap:150,site:"stonemountainlodge.com",blurb:"Backyard-style ceremony by a pond among red rock, with a tented reception."},
+  {id:"lyons-farmette",name:"Lyons Farmette",town:"Lyons",style:"Vineyard & Garden",cap:200,site:"lyonsfarmette.com",blurb:"Farm with gardens and animals on the St. Vrain River, plus a riverside site with tiny-home lodging."},
+  {id:"st-vrain",name:"The St. Vrain",town:"Longmont",style:"Urban & Industrial",cap:250,site:"thestvrain.com",blurb:"Converted auto showroom with red brick walls and a guesthouse."}
+];
+const CATS=[
+  {id:"venue",label:"Venue",noun:"venue",plural:"venues"},
+  {id:"catering",label:"Catering",noun:"caterer",plural:"caterers"},
+  {id:"photo",label:"Photography",noun:"photographer",plural:"photographers"},
+  {id:"flowers",label:"Flowers",noun:"florist",plural:"florists"},
+  {id:"music",label:"Music & DJ",noun:"DJ",plural:"DJs"},
+  {id:"cake",label:"Cake & dessert",noun:"baker",plural:"bakers"}
+];
+const CMAP=Object.fromEntries(CATS.map(c=>[c.id,c]));
+VENUES.forEach(v=>v.cat="venue");
+const VENDORS=[
+  {cat:"catering",id:"northern-colorado-catering",name:"Northern Colorado Catering",town:"Fort Collins",style:"Full-service",blurb:"Local full-service caterer for weddings and events across the region."},
+  {cat:"catering",id:"fionas-catering",name:"Fiona's Catering",town:"Fort Collins",style:"American",blurb:"Full-service buffet, hors d'oeuvres and cocktail-reception menus."},
+  {cat:"catering",id:"juli-y-juans",name:"Juli y Juan's Kitchen",town:"Fort Collins",style:"Latin American",blurb:"Made-from-scratch Latin American menus for receptions."},
+  {cat:"catering",id:"los-dos-paelleros",name:"Los Dos Paelleros",town:"Fort Collins",style:"Spanish paella",blurb:"Valencian paella cooked over an open wood fire, with tapas options."},
+  {cat:"catering",id:"get-plattered",name:"Get Plattered",town:"Fort Collins",style:"Grazing tables",price:"From $1,500",blurb:"Grazing tables and charcuterie spreads for cocktail hour or the whole reception."},
+  {cat:"catering",id:"super-natural-eats",name:"Super-Natural Eats",town:"Fort Collins",style:"Organic",blurb:"Organic, health-focused catering."},
+  {cat:"catering",id:"smoke-shack-bbq",name:"Smoke Shack Barbecue",town:"Longmont",style:"Barbecue",price:"From $15.95 / guest",blurb:"Barbecue catering with buffet setups for casual receptions."},
+  {cat:"photo",id:"kristen-rush",name:"Kristen Rush Photography",town:"Fort Collins",style:"Weddings & portraits",site:"kristenrushphotography.com",blurb:"Fort Collins and Northern Colorado wedding and portrait photographer."},
+  {cat:"photo",id:"megan-simpson",name:"Megan Simpson Photography",town:"Fort Collins",style:"Weddings",site:"msimpsonphoto.com",blurb:"Fort Collins wedding photographer."},
+  {cat:"photo",id:"mark-creery",name:"Mark Creery Photography",town:"Fort Collins",style:"Weddings",site:"markcreeryphotography.com",blurb:"Fort Collins wedding photographer."},
+  {cat:"photo",id:"wild-bliss",name:"Wild Bliss Photography",town:"Fort Collins",style:"Weddings & elopements",site:"wildblissphotography.com",blurb:"Northern Colorado wedding photographer, including mountain sessions."},
+  {cat:"photo",id:"phoco",name:"PHOCO",town:"Fort Collins",style:"Photo & video",site:"pho-co.com",blurb:"Wedding photography and video from a Fort Collins studio."},
+  {cat:"photo",id:"jules-kennedy",name:"Jules Kennedy Photography",town:"Fort Collins",style:"Weddings",site:"juleskennedyphoto.com",blurb:"Fort Collins wedding photographer."},
+  {cat:"flowers",id:"joyful-poppy",name:"The Joyful Poppy",town:"Fort Collins",style:"Full-service floral",site:"thejoyfulpoppy.com",blurb:"Wedding and event florist based in Fort Collins."},
+  {cat:"flowers",id:"palmer-flowers",name:"Palmer Flowers",town:"Fort Collins",style:"Full-service floral",site:"palmerflowers.com",blurb:"Fort Collins florist with a wedding and event decor team."},
+  {cat:"flowers",id:"flower-tribe",name:"Flower Tribe",town:"Fort Collins",style:"Earth-conscious",site:"flowertribeco.com",blurb:"Earth-conscious, free-spirited floral design."},
+  {cat:"flowers",id:"earles-flowers",name:"Earle's Flowers",town:"Loveland",style:"Full-service floral",site:"earlesflowersandgifts.com",blurb:"Offers a free, no-obligation wedding flower consultation for a range of budgets."},
+  {cat:"music",id:"mountain-event-services",name:"Mountain Event Services",town:"Fort Collins",style:"DJ & lighting",site:"mountaineventservices.com",blurb:"Fort Collins wedding DJs and event entertainment."},
+  {cat:"music",id:"ace-premier",name:"Ace Premier Events",town:"Fort Collins",style:"DJ & MC",site:"acepremierevents.com",blurb:"Wedding DJ and entertainment host."},
+  {cat:"music",id:"salazar-productions",name:"Salazar Productions",town:"Fort Collins",style:"DJ",site:"salazarproductions.net",blurb:"Wedding DJ service in Fort Collins."},
+  {cat:"music",id:"colorado-wedding-djs",name:"Colorado Wedding DJs",town:"Fort Collins",style:"DJ",site:"coloradoweddingdjs.com",blurb:"DJ for weddings and events in Fort Collins and Loveland."},
+  {cat:"music",id:"complete-weddings-noco",name:"Complete Weddings + Events",town:"Fort Collins",style:"DJ, photo & more",site:"completewedo.com/northern-colorado/dj/",blurb:"Northern Colorado DJ service that also bundles photo, video and photo booths."},
+  {cat:"cake",id:"buttermilk-bakery",name:"Buttermilk Bakery & Pie Shop",town:"Fort Collins",style:"Cakes & pies",site:"buttermilkbakeryco.com",blurb:"Custom wedding cakes made with fresh ingredients, plus pies."},
+  {cat:"cake",id:"june-poppies",name:"June Poppies",town:"Fort Collins",style:"Custom cakes",blurb:"Elegant custom cakes with simple ingredients and dietary accommodations."},
+  {cat:"cake",id:"cakes-by-tiffanie",name:"Cakes By Tiffanie",town:"Fort Collins",style:"Cakes & cupcakes",blurb:"Custom cakes, cupcakes and cake pops."},
+  {cat:"cake",id:"rh-bakes",name:"RH Bakes",town:"Fort Collins",style:"Modern custom",blurb:"Baked-to-order modern cakes with local ingredients."},
+  {cat:"cake",id:"mystic-moon",name:"Mystic Moon Bakery",town:"Fort Collins",style:"Custom cakes",blurb:"Fort Collins bakery taking wedding cake orders."},
+  {cat:"cake",id:"b-sweet",name:"\"B\" Sweet Cupcakes",town:"Loveland",style:"Cupcakes & cutting cakes",price:"From $50",blurb:"Custom cutting cakes and desserts since 2010."}
+];
+const LISTINGS=[...VENUES,...VENDORS];
+const VMAP = Object.fromEntries(LISTINGS.map(v=>[v.id,v]));
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+/* ---------- Art per setting ---------- */
+const ART = {
+  "Mountain":'<svg viewBox="0 0 300 92" preserveAspectRatio="none"><path d="M0 92 L60 30 L95 60 L150 10 L210 58 L245 34 L300 70 L300 92Z" fill="currentColor" opacity=".35"/><path d="M0 92 L80 52 L130 74 L190 44 L300 88 L300 92Z" fill="currentColor" opacity=".6"/></svg>',
+  "Barn & Ranch":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><path d="M0 78 H300 V92 H0Z" fill="currentColor" opacity=".35"/><path d="M190 78 V44 L214 22 L238 44 V78Z" fill="currentColor" opacity=".7"/><path d="M206 78 V58 H222 V78Z" fill="var(--surface-2)"/><path d="M40 78 C60 50 90 50 110 78" fill="none" stroke="currentColor" stroke-width="2" opacity=".4"/></svg>',
+  "Historic":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><path d="M150 14 L220 40 H80Z" fill="currentColor" opacity=".6"/><g fill="currentColor" opacity=".45"><rect x="92" y="44" width="10" height="36"/><rect x="122" y="44" width="10" height="36"/><rect x="168" y="44" width="10" height="36"/><rect x="198" y="44" width="10" height="36"/></g><rect x="80" y="80" width="140" height="8" fill="currentColor" opacity=".6"/></svg>',
+  "Vineyard & Garden":'<svg viewBox="0 0 300 92" preserveAspectRatio="none"><g stroke="currentColor" stroke-width="3" opacity=".45" fill="none"><path d="M0 70 Q75 50 150 70 T300 70"/><path d="M0 84 Q75 64 150 84 T300 84"/><path d="M0 56 Q75 36 150 56 T300 56"/></g></svg>',
+  "Urban & Industrial":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><g fill="currentColor" opacity=".5"><rect x="40" y="40" width="40" height="52"/><rect x="86" y="22" width="30" height="70"/><rect x="122" y="50" width="54" height="42"/><rect x="182" y="30" width="24" height="62"/><rect x="212" y="46" width="48" height="46"/></g></svg>',
+  "catering":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><path d="M100 70 A50 40 0 0 1 200 70Z" fill="currentColor" opacity=".55"/><rect x="86" y="70" width="128" height="6" rx="3" fill="currentColor" opacity=".7"/><circle cx="150" cy="26" r="4" fill="currentColor" opacity=".7"/></svg>',
+  "photo":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><rect x="110" y="30" width="80" height="52" rx="8" fill="currentColor" opacity=".55"/><rect x="132" y="22" width="30" height="12" rx="3" fill="currentColor" opacity=".55"/><circle cx="150" cy="56" r="16" fill="var(--surface-2)"/><circle cx="150" cy="56" r="9" fill="currentColor" opacity=".5"/></svg>',
+  "flowers":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><g fill="currentColor" opacity=".55"><circle cx="150" cy="30" r="10"/><circle cx="135" cy="40" r="10"/><circle cx="165" cy="40" r="10"/><circle cx="142" cy="54" r="10"/><circle cx="158" cy="54" r="10"/></g><circle cx="150" cy="42" r="6" fill="var(--surface-2)"/><path d="M150 62 V90" stroke="currentColor" stroke-width="3" opacity=".6"/></svg>',
+  "music":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><g fill="currentColor" opacity=".55"><rect x="90" y="50" width="8" height="30"/><rect x="104" y="36" width="8" height="44"/><rect x="118" y="24" width="8" height="56"/><rect x="132" y="44" width="8" height="36"/><rect x="146" y="30" width="8" height="50"/><rect x="160" y="54" width="8" height="26"/><rect x="174" y="38" width="8" height="42"/><rect x="188" y="48" width="8" height="32"/><rect x="202" y="60" width="8" height="20"/></g></svg>',
+  "cake":'<svg viewBox="0 0 300 92" preserveAspectRatio="xMidYMax meet"><g fill="currentColor"><rect x="112" y="62" width="76" height="22" rx="3" opacity=".6"/><rect x="124" y="42" width="52" height="20" rx="3" opacity=".45"/><rect x="136" y="24" width="28" height="18" rx="3" opacity=".6"/></g></svg>',
+  "Golf & Lakeside":'<svg viewBox="0 0 300 92" preserveAspectRatio="none"><path d="M0 66 C80 58 220 58 300 66 V92 H0Z" fill="currentColor" opacity=".45"/><path d="M40 74 H120 M160 80 H260" stroke="var(--surface-2)" stroke-width="2"/><path d="M220 58 V26 L240 32 L220 38" fill="currentColor" stroke="currentColor" stroke-width="2" opacity=".7"/></svg>'
+};
+
+/* ---------- Date helpers ---------- */
+const pad2 = n => String(n).padStart(2,"0");
+const iso = d => d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate());
+const parse = s => { const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
+const TODAY = iso(new Date());
+const fmtShort = s => { const d=parse(s); return DOW[d.getDay()]+" "+MONTHS[d.getMonth()].slice(0,3)+" "+d.getDate(); };
+const fmtLong = s => { const d=parse(s); return DOW[d.getDay()]+", "+MONTHS[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear(); };
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid8 = () => Math.random().toString(36).slice(2,10);
+
+/* ---------- State ---------- */
+const S = {
+  view:"find", cat:"venue",
+  filters:{from:"",to:"",dows:[5,6],guests:"",town:"",style:""},
+  calendars:{},   // venueId -> {date: {by, reqId?}}
+  pending:{},     // venueId -> {date: count}
+  mine:[],        // own requests
+  all:[],         // desk: [{uid, items}]
+  db:null, user:null, uid:null, canEdit:false, canWrite:true,
+  sheet:null      // {venueId, month:Date, picks:[], editMode:false}
+};
+(function initFilters(){
+  const t=new Date(); const f=new Date(t.getFullYear(),t.getMonth(),t.getDate()+1);
+  const e=new Date(t.getFullYear(),t.getMonth()+12,t.getDate());
+  S.filters.from=iso(f); S.filters.to=iso(e);
+  try{ const saved=JSON.parse(localStorage.getItem("od-filters")||"null"); if(saved&&saved.from>=TODAY) Object.assign(S.filters,saved);}catch(e){}
+})();
+function saveFilters(){ try{localStorage.setItem("od-filters",JSON.stringify(S.filters));}catch(e){} }
+
+const HOLD_DAYS=14;
+const ACTIVE=["hold","meeting"];
+const STATUS_LABEL={hold:"Tentative hold",meeting:"Meeting set",booked:"Booked",released:"Released",pending:"Tentative hold",confirmed:"Booked",declined:"Released"};
+const addDays=(s,n)=>{const d=parse(s); d.setDate(d.getDate()+n); return iso(d);};
+const fmtDT=s=>{ if(!s) return ""; const d=new Date(s); return isNaN(d)?s:d.toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}); };
+const isLive=r=>ACTIVE.includes(r.status)&&(!r.holdUntil||r.holdUntil>=TODAY);
+const pendingOf=items=>items.filter(isLive).map(r=>({id:r.id,venueId:r.venueId,dates:r.dates,holdUntil:r.holdUntil}));
+function dayState(vid,date){
+  if(date<TODAY) return "past";
+  if(S.calendars[vid]&&S.calendars[vid][date]) return "booked";
+  if(S.pending[vid]&&S.pending[vid][date]) return "req";
+  return "open";
+}
+
+/* ---------- Finder ---------- */
+const $ = id => document.getElementById(id);
+function setupFinder(){
+  const f=S.filters;
+  $("fFrom").value=f.from; $("fTo").value=f.to; $("fGuests").value=f.guests;
+  $("fFrom").min=TODAY; $("fTo").min=TODAY;
+  const towns=[...new Set(LISTINGS.map(v=>v.town))].sort();
+  towns.forEach(t=>$("fTown").insertAdjacentHTML("beforeend",`<option>${esc(t)}</option>`));
+  [...new Set(VENUES.map(v=>v.style))].forEach(s=>$("fStyle").insertAdjacentHTML("beforeend",`<option>${esc(s)}</option>`));
+  $("fTown").value=f.town; $("fStyle").value=f.style;
+  $("fDows").innerHTML=DOW.map((d,i)=>`<button type="button" data-i="${i}" aria-pressed="${f.dows.includes(i)}" aria-label="${d}">${d.slice(0,2)}</button>`).join("");
+  $("fDows").onclick=e=>{const b=e.target.closest("button"); if(!b)return; const i=+b.dataset.i;
+    f.dows=f.dows.includes(i)?f.dows.filter(x=>x!==i):[...f.dows,i]; b.setAttribute("aria-pressed",f.dows.includes(i)); saveFilters(); renderGrid();};
+  const on=(id,k)=>$(id).addEventListener("input",()=>{f[k]=$(id).value; saveFilters(); renderGrid();});
+  $("fExact").min=TODAY; if(f.from&&f.from===f.to) $("fExact").value=f.from;
+  $("fExact").addEventListener("input",()=>{const v=$("fExact").value; if(!v)return; f.from=v; f.to=v; $("fFrom").value=v; $("fTo").value=v; saveFilters(); renderGrid();});
+  ["fFrom","fTo"].forEach(id=>$(id).addEventListener("input",()=>{ if($("fFrom").value!==$("fTo").value) $("fExact").value=""; }));
+  on("fFrom","from"); on("fTo","to"); on("fGuests","guests"); on("fTown","town"); on("fStyle","style");
+}
+function candidateDates(){
+  const f=S.filters, out=[];
+  if(!f.from||!f.to||f.to<f.from) return out;
+  if(f.from===f.to) return f.from>=TODAY?[f.from]:out;
+  const d=parse(f.from<TODAY?TODAY:f.from), end=parse(f.to);
+  let guard=0;
+  while(d<=end && guard++<800){ if(!f.dows.length||f.dows.includes(d.getDay())) out.push(iso(d)); d.setDate(d.getDate()+1); }
+  return out;
+}
+function stepStatus(cat){
+  const items=S.mine.filter(r=>(VMAP[r.venueId]||{}).cat===cat);
+  const b=items.find(r=>r.status==="booked"); if(b) return {st:"booked",r:b};
+  const m=items.find(r=>r.status==="meeting"&&isLive(r)); if(m) return {st:"meeting",r:m};
+  const h=items.find(r=>r.status==="hold"&&isLive(r)); if(h) return {st:"hold",r:h};
+  return {st:"none"};
+}
+function weddingDate(){
+  const s=stepStatus("venue");
+  if(s.st==="booked") return {date:s.r.confirmedDate,firm:true,venue:VMAP[s.r.venueId].name};
+  if(s.st!=="none") return {date:s.r.dates[0],firm:false,venue:VMAP[s.r.venueId].name};
+  return null;
+}
+function renderSteps(){
+  $("steps").innerHTML=CATS.map((c,i)=>{const st=stepStatus(c.id).st;
+    return `<button type="button" data-cat="${c.id}" class="s-${st}" ${S.cat===c.id?'aria-current="step"':""}><span class="n">${st==="booked"?"✓":i+1}</span>${esc(c.label)}</button>`;}).join("");
+  const w=weddingDate(), f=S.filters;
+  if(S.cat!=="venue"){
+    $("datebar").hidden=false;
+    $("datebar").innerHTML=w
+      ? `<span>${w.firm?"Your wedding date":"Your first-choice venue date"} · <b class="num">${fmtLong(w.date)}</b> at ${esc(w.venue)}</span>${f.from===w.date&&f.to===w.date?`<span class="note">Showing ${esc(CMAP[S.cat].plural)} free that day</span>`:`<button class="btn" data-usedate="${w.date}">Search this date</button>`}`
+      : `<span>Pick a venue first so we can search every other vendor on your date.</span><button class="btn primary" data-cat="venue">Go to venues</button>`;
+  } else { $("datebar").hidden=true; }
+  $("wrapGuests").hidden=S.cat!=="venue"; $("wrapStyle").hidden=S.cat!=="venue";
+  $("why").hidden=S.cat!=="venue";
+}
+function setCat(cat){
+  S.cat=cat; const w=weddingDate();
+  if(cat!=="venue"&&w){ S.filters.from=w.date; S.filters.to=w.date; $("fFrom").value=w.date; $("fTo").value=w.date; $("fExact").value=w.date; }
+  S.filters.town=""; $("fTown").value="";
+  setView("find"); renderSteps(); renderGrid(); window.scrollTo({top:0});
+}
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-cat]"); if(c){ setCat(c.dataset.cat); return; }
+  const u=e.target.closest("[data-usedate]"); if(u){ const d=u.dataset.usedate; Object.assign(S.filters,{from:d,to:d}); $("fFrom").value=d; $("fTo").value=d; $("fExact").value=d; renderSteps(); renderGrid(); }
+});
+function renderGrid(){
+  const f=S.filters, dates=candidateDates(), cat=CMAP[S.cat], isVenue=S.cat==="venue";
+  const g=+f.guests||0;
+  const rows=LISTINGS.filter(v=>v.cat===S.cat&&(!f.town||v.town===f.town)&&(!isVenue||((!f.style||v.style===f.style)&&(!g||v.cap>=g))))
+    .map(v=>{ const open=[],req=[]; let booked=0;
+      dates.forEach(d=>{const s=dayState(v.id,d); if(s==="open")open.push(d); else if(s==="req")req.push(d); else if(s==="booked")booked++;});
+      return {v,open,req,booked};})
+    .filter(r=>r.open.length+r.req.length>0 || !dates.length)
+    .sort((a,b)=>(b.open.length)-(a.open.length)||a.v.name.localeCompare(b.v.name));
+  $("resultCount").textContent = `${rows.length} ${rows.length===1?cat.noun:cat.plural} · ${dates.length} candidate date${dates.length===1?"":"s"}`;
+  const note=S.cat==="catering"?`<p class="catnote" style="grid-column:1/-1">Check your venue's catering rules before you hold a caterer. Many venues require their in-house kitchen or an approved list.</p>`:"";
+  if(!rows.length){ $("grid").innerHTML=note+`<div class="empty" style="grid-column:1/-1">No ${esc(cat.plural)} match those filters with an open date. Widen the date window or clear the town filter.</div>`; return; }
+  $("grid").innerHTML=note+rows.map(({v,open,req,booked})=>{
+    const chipDates=[...open.map(d=>[d,"open"]),...req.map(d=>[d,"req"])].sort((a,b)=>a[0]<b[0]?-1:1);
+    const shown=chipDates.slice(0,6), more=chipDates.length-shown.length;
+    const single=dates.length===1;
+    return `<article class="card">
+      <div class="art">${ART[isVenue?v.style:v.cat]}<span class="town">${esc(v.town)}</span></div>
+      <div class="body">
+        <h3>${esc(v.name)}</h3>
+        <div class="meta"><span class="tag">${esc(v.style)}</span>${isVenue?`<span class="tag num">Up to ${v.cap} guests</span>`:v.price?`<span class="tag num">${esc(v.price)}</span>`:""}</div>
+        <p class="blurb">${esc(v.blurb)}</p>
+        <div class="avail">
+          ${single?`<div class="sum num">${open.length?`<b>Open</b> on ${fmtShort(dates[0])}`:`<span style="color:var(--req);font-weight:700">Tentative hold</span> on ${fmtShort(dates[0])}. You can still ask as a backup.`}</div>`:
+          `<div class="sum num"><b>${open.length} open</b>${req.length?` · ${req.length} on hold`:""}${booked?` · ${booked} booked`:""} of your ${dates.length} dates</div>
+          <div class="chips">${shown.map(([d,s])=>`<button class="chip ${s==="req"?"req":""} num" data-open="${v.id}" data-date="${d}" title="${s==="req"?"Another couple has a tentative hold on this date":"Open"}">${fmtShort(d)}</button>`).join("")}${more>0?`<button class="chip more num" data-open="${v.id}">+${more} more</button>`:""}</div>`}
+        </div>
+        <div class="actions"><button class="btn primary" data-open="${v.id}" ${single?`data-date="${dates[0]}"`:""}>${single?"Hold this date &amp; ask to meet":"Calendar &amp; soft hold"}</button></div>
+      </div></article>`;}).join("");
+}
+$("grid")?.addEventListener("click",e=>{const b=e.target.closest("[data-open]"); if(!b)return; openSheet(b.dataset.open,b.dataset.date);});
+
+/* ---------- Venue sheet ---------- */
+function openSheet(vid,date){
+  const start=date?parse(date):(S.filters.from?parse(S.filters.from):new Date());
+  S.sheet={venueId:vid,month:new Date(start.getFullYear(),start.getMonth(),1),picks:date&&dayState(vid,date)!=="booked"?[date]:[],editMode:false,sent:false};
+  renderSheet();
+}
+function closeSheet(){ S.sheet=null; $("sheetRoot").innerHTML=""; }
+function renderSheet(){
+  const sh=S.sheet; if(!sh){$("sheetRoot").innerHTML="";return;}
+  const v=VMAP[sh.venueId]; const m=sh.month;
+  const first=new Date(m.getFullYear(),m.getMonth(),1), days=new Date(m.getFullYear(),m.getMonth()+1,0).getDate();
+  let cells=DOW.map(d=>`<div class="dow">${d.slice(0,2)}</div>`).join("");
+  for(let i=0;i<first.getDay();i++) cells+=`<div class="day pad"></div>`;
+  let openCount=0;
+  for(let d=1;d<=days;d++){
+    const ds=iso(new Date(m.getFullYear(),m.getMonth(),d)); const st=dayState(v.id,ds);
+    if(st==="open")openCount++;
+    const rank=sh.picks.indexOf(ds);
+    const label=`${fmtLong(ds)}: ${st==="past"?"past":st==="req"?"tentative hold":st}`;
+    cells+=`<button class="day ${st} ${rank>=0?"sel":""} num" data-day="${ds}" aria-label="${label}" ${st==="past"?"disabled":""}>${d}${rank>=0?`<span class="rank">${rank+1}</span>`:""}</button>`;
+  }
+  const mine=S.mine.filter(r=>r.venueId===v.id);
+  const minMonth=new Date(); minMonth.setDate(1);
+  const prevDisabled = m.getFullYear()<minMonth.getFullYear() || (m.getFullYear()===minMonth.getFullYear()&&m.getMonth()<=minMonth.getMonth());
+  const draft=sh.draft||{};
+  $("sheetRoot").innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="hd"><div><div class="lbl">${esc(CMAP[v.cat].label)} · ${esc(v.town)} · ${esc(v.style)}</div><h2 id="sheetTitle">${esc(v.name)}</h2></div><button class="x" id="closeSheet" aria-label="Close">×</button></div>
+    <p style="margin:0;color:var(--ink-2)">${esc(v.blurb)}</p>
+    <div class="facts">
+      ${v.cap?`<div><span class="lbl">Capacity</span><b class="num">${v.cap} guests</b></div>`:`<div><span class="lbl">Pricing</span><b class="num">${esc(v.price||"Ask the vendor")}</b></div>`}
+      <div><span class="lbl">Open this month</span><b class="num">${openCount} days</b></div>
+      ${v.site?`<div><span class="lbl">Website</span><b style="font-size:14px;overflow-wrap:anywhere"><a href="https://${esc(v.site)}" target="_blank" rel="noopener" style="color:var(--accent)">${esc(v.site)}</a></b></div>`:""}
+    </div>
+    <div class="panel">
+      <div class="cal-hd">
+        <button class="btn ghost" id="prevM" aria-label="Previous month" ${prevDisabled?"disabled":""}>‹</button>
+        <h3 class="num">${MONTHS[m.getMonth()]} ${m.getFullYear()}</h3>
+        <button class="btn ghost" id="nextM" aria-label="Next month">›</button>
+      </div>
+      <div class="cal" id="cal">${cells}</div>
+      <div class="legend" style="margin-block:12px 0"><span><i style="background:var(--open)"></i>Open</span><span><i style="background:var(--req)"></i>Tentative hold</span><span><i style="background:var(--booked)"></i>Booked</span></div>
+      ${S.canEdit?`<label class="switch" style="margin-top:12px"><input type="checkbox" id="editMode" ${sh.editMode?"checked":""}> Venue desk: tap days to mark booked or open</label>`:""}
+      ${sh.editMode?`<p class="note">Tapping a day toggles it between booked and open for every visitor. Use it for dates the venue booked outside this site.</p>`:`<p class="note">Tap days to add them to your hold, in order of preference. A day with a tentative hold can still be requested as a backup; if the first couple passes, you are next in line.</p>`}
+    </div>
+    ${sh.editMode?"":sh.sent?`<div class="panel"><h3 style="font-size:20px">Hold placed</h3><p style="margin:.4em 0 0;color:var(--ink-2)">Your dates show as a tentative hold for ${HOLD_DAYS} days. They will reply with a meeting time; track it under <b>My plan</b>.</p></div>`:`
+    <form class="panel" id="reqForm" novalidate>
+      <h3 style="font-size:20px;margin-bottom:4px">Place a soft hold &amp; ask to meet</h3><p class="note" style="margin:0 0 6px">Nothing is booked yet. The hold is free, lasts ${HOLD_DAYS} days, and turns into a booking only after you meet.</p>
+      <div class="picked">${sh.picks.length?sh.picks.map((d,i)=>`<div class="row"><span class="num"><b>${i===0?"First choice":"Backup "+i}</b> · ${fmtLong(d)} ${dayState(v.id,d)==="req"?`<small>(another request pending)</small>`:""}</span><button type="button" class="btn ghost" data-unpick="${d}" aria-label="Remove ${fmtLong(d)}">Remove</button></div>`).join(""):`<div class="note">No dates picked yet. Choose up to three on the calendar.</div>`}</div>
+      <div class="form" style="margin-top:14px">
+        <div class="field"><label for="rNames">Your names</label><input id="rNames" required value="${esc(draft.names)}" placeholder="Sam & Jordan"></div>
+        <div class="field"><label for="rGuests">Expected guests</label><input id="rGuests" type="number" min="1" inputmode="numeric" value="${esc(draft.guests||S.filters.guests)}"></div>
+        <div class="field"><label for="rEmail">Email</label><input id="rEmail" type="email" required value="${esc(draft.email)}"></div>
+        <div class="field"><label for="rPhone">Phone</label><input id="rPhone" type="tel" value="${esc(draft.phone)}"></div>
+        <div class="field"><label for="rMeet1">A time you could meet</label><input id="rMeet1" type="datetime-local" value="${esc(draft.meet1)}"></div>
+        <div class="field"><label for="rMeet2">Another time that works</label><input id="rMeet2" type="datetime-local" value="${esc(draft.meet2)}"></div>
+        <div class="field full"><label for="rNotes">Anything they should know</label><textarea id="rNotes" rows="3" placeholder="Ceremony and reception on site, flexible on month, etc.">${esc(draft.notes)}</textarea></div>
+      </div>
+      <p class="note" id="formErr" style="color:var(--booked)" hidden></p>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px"><button class="btn primary" type="submit" ${S.canWrite?"":"disabled"}>Place hold &amp; request meeting</button><span class="note">${S.db?"The vendor sees your contact details. Other visitors only see the dates as on hold.":"Holds can't be placed from this view."}</span></div>
+    </form>`}
+    ${mine.length?`<div class="panel"><h3 style="font-size:18px;margin-bottom:8px">Your holds here</h3>${mine.map(r=>`<div class="note num">${r.dates.map(fmtShort).join(" · ")} — <span class="status ${r.status}">${STATUS_LABEL[r.status]||r.status}</span>${r.confirmedDate?` for ${fmtShort(r.confirmedDate)}`:""}${r.meetingAt?` · meeting ${fmtDT(r.meetingAt)}`:""}</div>`).join("")}</div>`:""}
+  </div></div>`;
+  $("closeSheet").onclick=closeSheet;
+  $("scrim").onclick=e=>{ if(e.target.id==="scrim") closeSheet(); };
+  $("prevM").onclick=()=>{ keepDraft(); sh.month=new Date(m.getFullYear(),m.getMonth()-1,1); renderSheet(); };
+  $("nextM").onclick=()=>{ keepDraft(); sh.month=new Date(m.getFullYear(),m.getMonth()+1,1); renderSheet(); };
+  if($("editMode")) $("editMode").onchange=e=>{ keepDraft(); sh.editMode=e.target.checked; renderSheet(); };
+  $("cal").onclick=e=>{ const b=e.target.closest("[data-day]"); if(!b||b.disabled) return; keepDraft(); const d=b.dataset.day;
+    if(sh.editMode){ toggleBlock(v.id,d); return; }
+    if(dayState(v.id,d)==="booked"){ toast("That date is booked. Pick an open day or one on hold."); return; }
+    const i=sh.picks.indexOf(d);
+    if(i>=0) sh.picks.splice(i,1); else if(sh.picks.length<3) sh.picks.push(d); else { toast("Three dates max. Remove one first."); return; }
+    renderSheet(); };
+  const form=$("reqForm");
+  if(form){
+    form.addEventListener("click",e=>{const b=e.target.closest("[data-unpick]"); if(!b)return; keepDraft(); sh.picks=sh.picks.filter(x=>x!==b.dataset.unpick); renderSheet();});
+    form.addEventListener("submit",e=>{e.preventDefault(); submitRequest();});
+  }
+}
+function keepDraft(){ const sh=S.sheet; if(!sh||!$("rNames"))return;
+  sh.draft={names:$("rNames").value,guests:$("rGuests").value,email:$("rEmail").value,phone:$("rPhone").value,notes:$("rNotes").value,meet1:$("rMeet1").value,meet2:$("rMeet2").value}; }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&S.sheet) closeSheet(); });
+
+/* ---------- Writes ---------- */
+let busy=false;
+async function submitRequest(){
+  const sh=S.sheet; keepDraft(); const d=sh.draft; const err=$("formErr");
+  const fail=m=>{err.textContent=m; err.hidden=false;};
+  if(!sh.picks.length) return fail("Pick at least one date on the calendar.");
+  if(!d.names.trim()) return fail("Add your names so the venue knows who's asking.");
+  if(!d.meet1&&!d.meet2) return fail("Suggest at least one time you could meet or tour the venue.");
+  if(!/^\S+@\S+\.\S+$/.test(d.email.trim())) return fail("Add an email address the venue can reply to.");
+  if(!S.db) return fail("This site isn't connected to its database yet, so holds can't be saved.");
+  if(!S.uid){ fail("Sign in with Google first so you can track your hold and the vendor can reach you."); signIn(); return; }
+  if(busy) return; busy=true;
+  const item={id:uid8(),venueId:sh.venueId,dates:[...sh.picks],names:d.names.trim(),email:d.email.trim(),phone:(d.phone||"").trim(),guests:+d.guests||null,notes:(d.notes||"").trim(),meetPrefs:[d.meet1,d.meet2].filter(Boolean),status:"hold",holdUntil:addDays(TODAY,HOLD_DAYS),createdAt:new Date().toISOString()};
+  const items=[...S.mine,item];
+  try{
+    await S.db.doc("requests/"+S.uid).set({items});
+    await S.db.doc("pending/"+S.uid).set({items:pendingOf(items)});
+    S.mine=items; sh.sent=true; sh.picks=[]; sh.draft=null; renderAll(); toast("Hold placed at "+VMAP[item.venueId].name);
+  }catch(e){
+    if(e&&e.code==="permission-denied"){ fail("You need to be signed in to place a hold. Sign in and try again."); }
+    else fail("The hold didn't save. Check your connection and try again.");
+  }finally{busy=false;}
+}
+async function toggleBlock(vid,date){
+  if(!S.db||busy) return; busy=true;
+  const cur={...(S.calendars[vid]||{})};
+  if(cur[date]) delete cur[date]; else cur[date]={by:"venue"};
+  try{ await S.db.doc("calendar/"+vid).set({booked:cur}); S.calendars[vid]=cur; renderAll(); toast(cur[date]?`${fmtShort(date)} marked booked`:`${fmtShort(date)} reopened`); }
+  catch(e){ toast("That change didn't save. Try again."); }
+  finally{busy=false;}
+}
+async function deskUpdate(ownerUid,reqId,patch,msg,bookDate){
+  if(!S.db||busy) return; busy=true;
+  const entry=S.all.find(x=>x.uid===ownerUid); if(!entry){busy=false;return;}
+  const items=entry.items.map(r=>r.id===reqId?{...r,...patch,updatedAt:new Date().toISOString()}:r);
+  const req=items.find(r=>r.id===reqId);
+  try{
+    await S.db.doc("requests/"+ownerUid).set({items});
+    await S.db.doc("pending/"+ownerUid).set({items:pendingOf(items)});
+    if(bookDate){ const cur={...(S.calendars[req.venueId]||{})}; cur[bookDate]={by:"hold",reqId}; await S.db.doc("calendar/"+req.venueId).set({booked:cur}); }
+    toast(msg(req));
+  }catch(e){ toast("That didn't save. Try again."); }
+  finally{busy=false;}
+}
+/* ---------- Lists ---------- */
+function reqCard(r,{desk,ownerUid}={}){
+  const v=VMAP[r.venueId]||{name:r.venueId,town:""};
+  const st=r.status==="pending"?"hold":r.status==="confirmed"?"booked":r.status==="declined"?"released":r.status;
+  const lapsed=ACTIVE.includes(st)&&r.holdUntil&&r.holdUntil<TODAY;
+  const cls=lapsed?"released":st;
+  const label=lapsed?"Hold lapsed":(STATUS_LABEL[st]||st);
+  const live=ACTIVE.includes(st)&&!lapsed;
+  const dates=r.dates.map((d,i)=>{ const taken=S.calendars[r.venueId]&&S.calendars[r.venueId][d]&&r.confirmedDate!==d;
+    return `<span class="d num ${taken&&live?"taken":""}">${i===0?"1st":i===1?"2nd":"3rd"} · ${fmtShort(d)}${desk&&live&&!taken&&d>=TODAY?` <button class="btn good" style="padding:3px 9px;font-size:12px" data-book="${ownerUid}|${r.id}|${d}">Book</button>`:""}</span>`;}).join("");
+  const prefs=(r.meetPrefs||[]).map(fmtDT).join(" or ");
+  const holdLine=live?`Hold active through ${fmtShort(r.holdUntil)}`:"";
+  return `<article class="req-card">
+    <div class="top"><h3>${desk?esc(r.names)+" · ":""}${esc(v.name)} <span class="tag" style="font-family:var(--body);vertical-align:3px">${esc((CMAP[v.cat]||{}).label||"")}</span></h3><span class="status ${cls}">${label}${r.confirmedDate?" · "+fmtShort(r.confirmedDate):""}</span></div>
+    <div class="dates">${dates}</div>
+    <dl class="kv">
+      ${r.meetingAt?`<dt>Meeting</dt><dd><b>${fmtDT(r.meetingAt)}</b></dd>`:""}
+      ${prefs?`<dt>${r.meetingAt?"They offered":desk?"Can meet":"You offered"}</dt><dd>${esc(prefs)}</dd>`:""}
+      ${holdLine?`<dt>Hold</dt><dd class="num">${holdLine}</dd>`:""}
+      ${desk?`<dt>Email</dt><dd>${esc(r.email)}</dd>${r.phone?`<dt>Phone</dt><dd>${esc(r.phone)}</dd>`:""}${r.guests?`<dt>Guests</dt><dd class="num">${r.guests}</dd>`:""}`:""}
+      ${r.notes?`<dt>Notes</dt><dd>${esc(r.notes)}</dd>`:""}
+      <dt>Placed</dt><dd class="num">${new Date(r.createdAt).toLocaleDateString()}${desk?"":" · "+esc(v.town)}</dd>
+    </dl>
+    ${desk&&live?`<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:end">
+      <div class="field"><label for="mt-${r.id}">Meeting time</label><input type="datetime-local" id="mt-${r.id}" value="${esc(r.meetingAt||(r.meetPrefs||[])[0]||"")}"></div>
+      <button class="btn primary" data-meet="${ownerUid}|${r.id}">${r.meetingAt?"Update meeting":"Set meeting"}</button>
+      <button class="btn bad" data-release="${ownerUid}|${r.id}">Release hold</button></div>
+      <p class="note" style="margin:0">Setting a meeting keeps the hold until 3 days after it. Book a date once you've met.</p>`:""}
+  </article>`;
+}
+function renderMine(){
+  const w=weddingDate();
+  $("planSub").textContent=w?`${w.firm?"Wedding date":"Working date"}: ${fmtLong(w.date)} at ${w.venue}. Every step below searches this date.`:"Start with the venue. Its date carries into every other step.";
+  let nextMarked=false;
+  $("planSteps").innerHTML=CATS.map((c,i)=>{ const {st,r}=stepStatus(c.id); const v=r&&VMAP[r.venueId];
+    let sub, btn;
+    if(st==="booked"){ sub=`<b>${esc(v.name)}</b> · booked for ${fmtShort(r.confirmedDate)}`; btn=`<button class="btn ghost" data-open="${v.id}">View</button>`; }
+    else if(st==="meeting"){ sub=`<b>${esc(v.name)}</b> · meeting ${fmtDT(r.meetingAt)} · hold on ${r.dates.map(fmtShort).join(", ")}`; btn=`<button class="btn ghost" data-cat="${c.id}">Compare others</button>`; }
+    else if(st==="hold"){ sub=`<b>${esc(v.name)}</b> · hold on ${r.dates.map(fmtShort).join(", ")} · waiting for a meeting time`; btn=`<button class="btn ghost" data-cat="${c.id}">Compare others</button>`; }
+    else { const isNext=!nextMarked; nextMarked=true; sub=c.id==="venue"?"Find a venue and hold your date.":w?`See which ${c.plural} are free on ${fmtShort(w.date)}.`:`Hold a venue date first.`; btn=`<button class="btn ${isNext?"primary":""}" data-cat="${c.id}">Find ${c.id==="photo"?"a photographer":c.id==="catering"?"a caterer":c.id==="flowers"?"a florist":c.id==="music"?"a DJ":c.id==="cake"?"a baker":"a venue"}</button>`; }
+    const label={booked:"Booked",meeting:"Meeting set",hold:"Tentative hold",none:"Not started"}[st];
+    return `<div class="pstep s-${st}"><span class="n num">${st==="booked"?"✓":i+1}</span><div><h3>${esc(c.label)} <span class="status ${st==="none"?"":st}" style="font-family:var(--body);vertical-align:3px;${st==="none"?"background:var(--surface-2);color:var(--ink-2)":""}">${label}</span></h3><div class="sub num">${sub}</div></div>${btn}</div>`;}).join("");
+  const now=new Date().toISOString().slice(0,16);
+  const meets=S.mine.filter(r=>r.meetingAt&&isLive(r)&&r.meetingAt>=now).sort((a,b)=>a.meetingAt.localeCompare(b.meetingAt));
+  $("meetList").innerHTML=meets.length?meets.map(r=>{const v=VMAP[r.venueId]; return `<div class="pstep s-meeting" style="grid-template-columns:auto 1fr"><span class="status meeting num">${fmtDT(r.meetingAt)}</span><div><b>${esc(v.name)}</b> <span class="sub">· ${esc(CMAP[v.cat].label)} · ${esc(v.town)}</span></div></div>`;}).join(""):`<div class="empty">No meetings scheduled yet. When a vendor picks one of the times you offered, it shows up here.</div>`;
+  const list=[...S.mine].sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+  $("mineList").innerHTML=list.length?list.map(r=>reqCard(r)).join(""):`<div class="empty">No holds yet. Start with <b>Venue</b>, pick up to three dates and suggest a time to meet.</div>`;
+}
+$("planSteps").addEventListener("click",e=>{const b=e.target.closest("[data-open]"); if(b) openSheet(b.dataset.open);});
+function renderDesk(){
+  const rows=[]; S.all.forEach(e=>(e.items||[]).forEach(r=>rows.push({r,uid:e.uid})));
+  rows.sort((a,b)=>(isLive(a.r)?0:1)-(isLive(b.r)?0:1)||b.r.createdAt.localeCompare(a.r.createdAt));
+  const n=rows.filter(x=>x.r.status==="hold"&&isLive(x.r)).length;
+  $("deskBadge").textContent=n; $("deskBadge").hidden=!n;
+  $("deskList").innerHTML=rows.length?rows.map(x=>reqCard(x.r,{desk:true,ownerUid:x.uid})).join(""):`<div class="empty">No holds yet. When a couple places one it appears here with their contact details and preferred meeting times.</div>`;
+}
+$("deskList").addEventListener("click",e=>{
+  const bk=e.target.closest("[data-book]"); if(bk){const [u,id,d]=bk.dataset.book.split("|"); deskUpdate(u,id,{status:"booked",confirmedDate:d},r=>`Booked ${r.names} for ${fmtShort(d)}`,d); return;}
+  const m=e.target.closest("[data-meet]"); if(m){const [u,id]=m.dataset.meet.split("|"); const val=$("mt-"+id).value; if(!val){toast("Pick a meeting time first.");return;}
+    const until=addDays(val.slice(0,10),3); deskUpdate(u,id,{status:"meeting",meetingAt:val,holdUntil:until<TODAY?addDays(TODAY,3):until},r=>`Meeting set with ${r.names} for ${fmtDT(val)}`); return;}
+  const x=e.target.closest("[data-release]"); if(x){const [u,id]=x.dataset.release.split("|"); deskUpdate(u,id,{status:"released"},r=>`Released ${r.names}'s hold`);}
+});
+
+/* ---------- Tabs & render ---------- */
+document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("[data-view]"); if(!b)return; setView(b.dataset.view);});
+function setView(v){ S.view=v; ["find","mine","desk"].forEach(k=>{$("view-"+k).hidden=k!==v; $("tab-"+k).setAttribute("aria-selected",k===v);}); try{localStorage.setItem("od-view",v);}catch(e){} }
+function renderAll(){ renderSteps(); renderGrid(); renderMine(); if(S.canEdit) renderDesk(); if(S.sheet) renderSheet(); }
+let toastT; function toast(m){ $("toastRoot").innerHTML=`<div class="toast" role="status">${esc(m)}</div>`; clearTimeout(toastT); toastT=setTimeout(()=>$("toastRoot").innerHTML="",3200); }
+
+/* ---------- Boot ---------- */
+setupFinder(); renderAll();
+try{ const v=localStorage.getItem("od-view"); if(v==="mine") setView("mine"); }catch(e){}
+
+/* ---------- Firebase ---------- */
+const wrapDoc=s=>({id:s.id,exists:s.exists(),data:()=>s.data()});
+let fs=null, auth=null;
+function makeDb(fs){ return {
+  doc:p=>({ set:d=>setDoc(fsDoc(fs,p),d), onSnapshot:(n,e)=>fsSnap(fsDoc(fs,p),s=>n(wrapDoc(s)),e) }),
+  collection:p=>({ onSnapshot:(n,e)=>fsSnap(fsCol(fs,p),s=>n({docs:s.docs.map(wrapDoc)}),e) })
+};}
+async function signIn(){ if(!auth) return; try{ await signInWithPopup(auth,new GoogleAuthProvider()); }catch(e){ if(e.code!=="auth/popup-closed-by-user") toast("Sign-in didn't finish. Allow pop-ups for this site and try again."); } }
+function renderAcct(user){
+  $("acct").innerHTML = !auth ? "" : user
+    ? `<span class="who">${esc(user.displayName||user.email||"Signed in")}</span><button class="btn ghost" id="signOutBtn">Sign out</button>`
+    : `<button class="btn primary" id="signInBtn">Sign in with Google</button>`;
+  $("signInBtn")&&($("signInBtn").onclick=signIn);
+  $("signOutBtn")&&($("signOutBtn").onclick=()=>signOut(auth));
+  $("acctId").textContent = user ? `Your account ID (for vendor-desk setup): ${user.uid}` : "";
+}
+const configured = firebaseConfig && firebaseConfig.apiKey && !/^PASTE/.test(firebaseConfig.apiKey);
+if(!configured){ $("setupBanner").hidden=false; S.canWrite=false; renderAll(); }
+else {
+  try{
+    const [A,U,F]=await Promise.all([import(FB+"firebase-app.js"),import(FB+"firebase-auth.js"),import(FB+"firebase-firestore.js")]);
+    ({initializeApp}=A); ({getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}=U);
+    ({getFirestore,doc:fsDoc,collection:fsCol,setDoc,getDoc,onSnapshot:fsSnap}=F);
+  }catch(e){ $("setupBanner").textContent="Couldn't reach the booking service. Check your connection and reload."; $("setupBanner").hidden=false; S.canWrite=false; renderAll(); throw e; }
+  const app=initializeApp(firebaseConfig); fs=getFirestore(app); auth=getAuth(app);
+  const db=makeDb(fs); S.db=db;
+  db.collection("calendar").onSnapshot(snap=>{ const c={}; snap.docs.forEach(d=>{c[d.id]=(d.data()||{}).booked||{};}); S.calendars=c; renderAll(); },()=>{});
+  db.collection("pending").onSnapshot(snap=>{ const p={}; snap.docs.forEach(d=>((d.data()||{}).items||[]).filter(it=>!it.holdUntil||it.holdUntil>=TODAY).forEach(it=>{ (it.dates||[]).forEach(dt=>{ (p[it.venueId]=p[it.venueId]||{}); p[it.venueId][dt]=(p[it.venueId][dt]||0)+1; }); })); S.pending=p; renderAll(); },()=>{});
+  let unMine=null, unDesk=null;
+  onAuthStateChanged(auth, async user=>{
+    unMine&&unMine(); unDesk&&unDesk(); unMine=unDesk=null;
+    S.uid=user?user.uid:null; S.canEdit=false; S.mine=[]; S.all=[];
+    if(user){
+      unMine=db.doc("requests/"+user.uid).onSnapshot(s=>{ S.mine=(s.exists&&(s.data()||{}).items)||[]; renderAll(); },()=>{});
+      try{ S.canEdit=(await getDoc(fsDoc(fs,"admins/"+user.uid))).exists(); }catch(e){}
+      if(S.canEdit) unDesk=db.collection("requests").onSnapshot(snap=>{ S.all=snap.docs.map(d=>({uid:d.id,items:(d.data()||{}).items||[]})); renderAll(); },()=>{});
+    }
+    $("tab-desk").hidden=!S.canEdit;
+    if(!S.canEdit&&S.view==="desk") setView("find");
+    else if(S.canEdit){ try{ if(localStorage.getItem("od-view")==="desk") setView("desk"); }catch(e){} }
+    renderAcct(user); renderAll();
+  });
+}
+</script>
+</body>
+</html>
