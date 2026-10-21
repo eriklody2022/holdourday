@@ -5,22 +5,33 @@ service cloud.firestore {
     function isAdmin() {
       return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
+    // A document that holds only an "items" list, with at most `max` entries.
+    function itemsDoc(max) {
+      return request.resource.data.keys().hasOnly(['items'])
+        && request.resource.data.items is list
+        && request.resource.data.items.size() <= max;
+    }
 
     // Booked and blocked dates per venue/vendor. Everyone can see them; only the vendor desk can change them.
     match /calendar/{vendorId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if isAdmin()
+        && request.resource.data.keys().hasOnly(['booked'])
+        && request.resource.data.booked is map;
     }
 
-    // Public list of tentative holds: dates only, no names or contact details.
+    // Public list of active tentative holds: dates only, no names or contact details. Max 10 per couple.
     match /pending/{uid} {
       allow read: if true;
-      allow write: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create, update: if signedIn() && (request.auth.uid == uid || isAdmin()) && itemsDoc(10);
+      allow delete: if isAdmin();
     }
 
-    // Each couple's full holds with contact details. Only that couple and the vendor desk can see them.
+    // Each couple's holds with contact details. Only that couple and the vendor desk can see them. Max 25 saved.
     match /requests/{uid} {
-      allow read, write: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create, update: if signedIn() && (request.auth.uid == uid || isAdmin()) && itemsDoc(25);
+      allow delete: if isAdmin();
     }
 
     // Vendor-desk accounts. Added by hand in the Firebase console.

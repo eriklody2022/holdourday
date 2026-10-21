@@ -237,7 +237,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
   </section>
 
   <footer>
-    Hold Our Day is an independent planning directory and is not affiliated with the venues or vendors listed. Details come from public wedding guides and vendor sites and may be out of date. Availability reflects bookings, holds and blocks recorded on this page. A tentative hold is not a contract; a date is booked only after the couple meets with the venue.
+    Hold Our Day is an independent planning directory and is not affiliated with the venues or vendors listed. Details come from public wedding guides and vendor sites and may be out of date. Availability reflects bookings, holds and blocks recorded on this page. A tentative hold is not a contract; a date is booked only after the couple meets with the venue. <a href="privacy.html" style="color:var(--accent)">Privacy policy</a>
     <div class="note num" id="acctId" style="margin-top:8px"></div>
   </footer>
 </div>
@@ -379,6 +379,12 @@ const STATUS_LABEL={hold:"Tentative hold",meeting:"Meeting set",booked:"Booked",
 const addDays=(s,n)=>{const d=parse(s); d.setDate(d.getDate()+n); return iso(d);};
 const fmtDT=s=>{ if(!s) return ""; const d=new Date(s); return isNaN(d)?s:d.toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}); };
 const isLive=r=>ACTIVE.includes(r.status)&&(!r.holdUntil||r.holdUntil>=TODAY);
+const MAX_LIVE=10, MAX_ITEMS=25;
+function pruneItems(items){
+  const keep=items.filter(r=>isLive(r)||r.status==="booked");
+  const rest=items.filter(r=>!keep.includes(r)).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+  return [...keep,...rest.slice(0,Math.max(0,MAX_ITEMS-keep.length))];
+}
 const pendingOf=items=>items.filter(isLive).map(r=>({id:r.id,venueId:r.venueId,dates:r.dates,holdUntil:r.holdUntil}));
 function dayState(vid,date){
   if(date<TODAY) return "past";
@@ -541,7 +547,7 @@ function renderSheet(){
         <div class="field full"><label for="rNotes">Anything they should know</label><textarea id="rNotes" rows="3" placeholder="Ceremony and reception on site, flexible on month, etc.">${esc(draft.notes)}</textarea></div>
       </div>
       <p class="note" id="formErr" style="color:var(--booked)" hidden></p>
-      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px"><button class="btn primary" type="submit" ${S.canWrite?"":"disabled"}>Place hold &amp; request meeting</button><span class="note">${S.db?"The vendor sees your contact details. Other visitors only see the dates as on hold.":"Holds can't be placed from this view."}</span></div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px"><button class="btn primary" type="submit" ${S.canWrite?"":"disabled"}>Place hold &amp; request meeting</button><span class="note">${S.db?"The vendor sees your contact details. Other visitors only see the dates as on hold. <a href=\"privacy.html\" target=\"_blank\" style=\"color:var(--accent)\">Privacy policy</a>":"Holds can't be placed from this view."}</span></div>
     </form>`}
     ${mine.length?`<div class="panel"><h3 style="font-size:18px;margin-bottom:8px">Your holds here</h3>${mine.map(r=>`<div class="note num">${r.dates.map(fmtShort).join(" · ")} — <span class="status ${r.status}">${STATUS_LABEL[r.status]||r.status}</span>${r.confirmedDate?` for ${fmtShort(r.confirmedDate)}`:""}${r.meetingAt?` · meeting ${fmtDT(r.meetingAt)}`:""}</div>`).join("")}</div>`:""}
   </div></div>`;
@@ -579,7 +585,9 @@ async function submitRequest(){
   if(!S.uid){ fail("Sign in with Google first so you can track your hold and the vendor can reach you."); signIn(); return; }
   if(busy) return; busy=true;
   const item={id:uid8(),venueId:sh.venueId,dates:[...sh.picks],names:d.names.trim(),email:d.email.trim(),phone:(d.phone||"").trim(),guests:+d.guests||null,notes:(d.notes||"").trim(),meetPrefs:[d.meet1,d.meet2].filter(Boolean),status:"hold",holdUntil:addDays(TODAY,HOLD_DAYS),createdAt:new Date().toISOString()};
-  const items=[...S.mine,item];
+  if(S.mine.filter(isLive).length>=MAX_LIVE) return fail(`You have ${MAX_LIVE} active holds. Release one under My plan before placing another.`);
+  const items=pruneItems([...S.mine,item]);
+  if(items.length>MAX_ITEMS) return fail("You've reached the limit for saved holds and bookings. Contact us to clear old ones.");
   try{
     await S.db.doc("requests/"+S.uid).set({items});
     await S.db.doc("pending/"+S.uid).set({items:pendingOf(items)});
@@ -710,7 +718,7 @@ else {
   const app=initializeApp(firebaseConfig); fs=getFirestore(app); auth=getAuth(app);
   const db=makeDb(fs); S.db=db;
   db.collection("calendar").onSnapshot(snap=>{ const c={}; snap.docs.forEach(d=>{c[d.id]=(d.data()||{}).booked||{};}); S.calendars=c; renderAll(); },()=>{});
-  db.collection("pending").onSnapshot(snap=>{ const p={}; snap.docs.forEach(d=>((d.data()||{}).items||[]).filter(it=>!it.holdUntil||it.holdUntil>=TODAY).forEach(it=>{ (it.dates||[]).forEach(dt=>{ (p[it.venueId]=p[it.venueId]||{}); p[it.venueId][dt]=(p[it.venueId][dt]||0)+1; }); })); S.pending=p; renderAll(); },()=>{});
+  db.collection("pending").onSnapshot(snap=>{ const p={}; snap.docs.forEach(d=>((d.data()||{}).items||[]).filter(it=>it&&it.holdUntil&&it.holdUntil>=TODAY&&it.holdUntil<=addDays(TODAY,180)&&Array.isArray(it.dates)).forEach(it=>{ (it.dates||[]).forEach(dt=>{ (p[it.venueId]=p[it.venueId]||{}); p[it.venueId][dt]=(p[it.venueId][dt]||0)+1; }); })); S.pending=p; renderAll(); },()=>{});
   let unMine=null, unDesk=null;
   onAuthStateChanged(auth, async user=>{
     unMine&&unMine(); unDesk&&unDesk(); unMine=unDesk=null;
